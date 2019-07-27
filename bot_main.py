@@ -3,6 +3,7 @@ import time
 
 tokenFile = open("credentials.txt")
 TOKEN = tokenFile.read()
+TOKEN = TOKEN.strip()
 tokenFile.close()
 
 print(TOKEN)
