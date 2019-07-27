@@ -6,8 +6,6 @@ TOKEN = tokenFile.read()
 TOKEN = TOKEN.strip()
 tokenFile.close()
 
-print(TOKEN)
-
 bot = commands.Bot(command_prefix='!!!', case_insensitive=True, description="HouseBand Music Bot")
 
 cogs = ['music']
