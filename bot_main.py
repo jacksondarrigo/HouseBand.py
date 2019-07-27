@@ -5,6 +5,8 @@ tokenFile = open("credentials.txt")
 TOKEN = tokenFile.read()
 tokenFile.close()
 
+print(TOKEN)
+
 bot = commands.Bot(command_prefix='!!!', case_insensitive=True, description="HouseBand Music Bot")
 
 cogs = ['music']
