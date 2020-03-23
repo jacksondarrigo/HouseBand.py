@@ -1,7 +1,7 @@
 from discord.ext import commands
 import time
 
-tokenFile = open("credentials.txt")
+tokenFile = open("./credentials.txt")
 TOKEN = tokenFile.read()
 TOKEN = TOKEN.strip()
 tokenFile.close()
