@@ -278,7 +278,7 @@ class Music(commands.Cog):
         if not vc:
             if ctx.author == ctx.guild.owner:
                 voice_channels = ctx.guild.voice_channels
-                channel = next((voice_channel for voice_channel in voice_channels if voice_channel.name == search.split()[0]), None)
+                channel = next((voice_channel for voice_channel in voice_channels if (search.split()[0] in voice_channel.name)), None)
                 await ctx.invoke(self.connect_(channel=channel))
             else:
                 await ctx.invoke(self.connect_)
