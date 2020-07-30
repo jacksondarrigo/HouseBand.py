@@ -1,14 +1,6 @@
 from discord.ext import commands
 import time
-import os
 import sys
-
-#appRootDir = os.path.dirname(__file__)
-#credentialsPath = os.path.join(appRootDir, "credentials.txt")
-#tokenFile = open(credentialsPath)
-#TOKEN = tokenFile.read()
-#TOKEN = TOKEN.strip()
-#tokenFile.close()
 
 TOKEN = sys.argv[1]
 

@@ -276,7 +276,12 @@ class Music(commands.Cog):
         vc = ctx.voice_client
 
         if not vc:
-            await ctx.invoke(self.connect_)
+            if ctx.author == ctx.guild.owner:
+                voice_channels = ctx.guild.voice_channels
+                channel = next((voice_channel for voice_channel in voice_channels if voice_channel.name == search.split()[0]), None)
+                await ctx.invoke(self.connect_(channel=channel))
+            else:
+                await ctx.invoke(self.connect_)
 
         player = self.get_player(ctx)
 
