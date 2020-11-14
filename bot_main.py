@@ -4,8 +4,8 @@ import time
 import sys
 import os
 
-def sigterm_handler(signal, frame):
-    bot.logout()
+async def sigterm_handler(signal, frame):
+    await bot.close()
     sys.exit(0)
 
 signal.signal(signal.SIGTERM, sigterm_handler)
@@ -47,4 +47,4 @@ if __name__ == '__main__':
         except Exception as error:
             print('{} cannot be loaded. ({})'.format(cog, error))
 
-    bot.run(TOKEN)
+    await bot.start(TOKEN)
