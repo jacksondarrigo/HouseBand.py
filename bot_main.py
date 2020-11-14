@@ -47,4 +47,4 @@ if __name__ == '__main__':
         except Exception as error:
             print('{} cannot be loaded. ({})'.format(cog, error))
 
-    await bot.start(TOKEN)
+    bot.start(TOKEN)
