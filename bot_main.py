@@ -1,8 +1,16 @@
 from discord.ext import commands
+import signal
 import time
 import sys
+import os
 
-TOKEN = sys.argv[1]
+def sigterm_handler(signal, frame):
+    bot.logout()
+    sys.exit(0)
+
+signal.signal(signal.SIGTERM, sigterm_handler)
+
+TOKEN = os.environ.get('DISCORD_TOKEN')
 
 bot = commands.Bot(command_prefix='!!!', case_insensitive=True, description="HouseBand Music Bot")
 
