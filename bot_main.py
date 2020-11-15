@@ -43,33 +43,32 @@ if __name__ == '__main__':
         except Exception as error:
             print('{} cannot be loaded. ({})'.format(cog, error))
 
-    # async def close(bot):
-    #    """|coro|
-    #    Closes the connection to Discord.
-    #    """
-    #    if bot._closed:
-    #        return
-    #
-    #    await bot.http.close()
-    #    bot._closed = True
-    #
-    #    for voice in bot.voice_clients:
-    #        try:
-    #            await voice.disconnect()
-    #        except Exception:
-    #            # if an error happens during disconnects, disregard it.
-    #            pass
-    #
-    #    if bot.ws is not None and bot.ws.open:
-    #        await bot.change_presence(status=discord.Status.offline)
-    #        await bot.ws.close(code=1000)
-    #
-    #    bot._ready.clear()
+    async def close(bot):
+        """|coro|
+        Closes the connection to Discord.
+        """
+        if bot._closed:
+            return
+        
+        if bot.ws is not None and bot.ws.open:
+            await bot.ws.close(code=1000)
 
-    async def sigterm_handler():
-        await bot.change_presence(status=discord.Status.offline)
-        await bot.close()
+        await bot.http.close()
+        bot._closed = True
+    
+        for voice in bot.voice_clients:
+            try:
+                await voice.disconnect()
+            except Exception:
+                # if an error happens during disconnects, disregard it.
+                pass
+    
+        bot._ready.clear()
+
+    #async def sigterm_handler():
+    #    await bot.change_presence(status=discord.Status.offline)
+    #    await bot.close()
 
     loop = asyncio.get_event_loop()
-    loop.add_signal_handler(signal.SIGTERM, lambda: asyncio.create_task(sigterm_handler()))
+    loop.add_signal_handler(signal.SIGTERM, lambda: asyncio.create_task(close(bot)))
     loop.run_until_complete(bot.start(TOKEN))
