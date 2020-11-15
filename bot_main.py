@@ -43,6 +43,7 @@ if __name__ == '__main__':
             print('{} cannot be loaded. ({})'.format(cog, error))
 
     async def sigterm_handler():
+        print('SIGTERM received by bot')
         try:
             loop.run_until_complte(bot.close())
         finally:
