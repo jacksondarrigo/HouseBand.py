@@ -60,6 +60,7 @@ if __name__ == '__main__':
                 pass
 
         if bot.ws is not None and bot.ws.open:
+            print('Closing connection gracefully...')
             await bot.ws.close(code=1000)
 
         bot._ready.clear()
