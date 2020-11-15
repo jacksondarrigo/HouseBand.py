@@ -42,20 +42,12 @@ if __name__ == '__main__':
         except Exception as error:
             print('{} cannot be loaded. ({})'.format(cog, error))
 
-    async def sigterm_handler():
+    def sigterm_handler():
         print('SIGTERM received by bot')
-        try:
-            loop.run_until_complte(bot.close())
-        finally:
-            loop.close()
-            sys.exit(0)
+        loop.run_until_complte(bot.close())
+        loop.close()
+        sys.exit(0)
 
     loop = asyncio.get_event_loop()
     loop.add_signal_handler(signal.SIGTERM, lambda: sigterm_handler())
-
-    try:
-        loop.run_until_complete(bot.start(TOKEN))
-    except KeyboardInterrupt:
-        loop.run_until_complte(bot.close())
-    finally:
-        loop.close()
+    loop.run_until_complete(bot.start(TOKEN))
