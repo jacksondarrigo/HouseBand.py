@@ -43,8 +43,11 @@ if __name__ == '__main__':
             print('{} cannot be loaded. ({})'.format(cog, error))
 
     async def sigterm_handler():
-        await bot.logout()
-        sys.exit(0)
+        try:
+            loop.run_until_complte(bot.close())
+        finally:
+            loop.close()
+            sys.exit(0)
 
     loop = asyncio.get_event_loop()
     loop.add_signal_handler(signal.SIGTERM, lambda: sigterm_handler())
@@ -52,6 +55,6 @@ if __name__ == '__main__':
     try:
         loop.run_until_complete(bot.start(TOKEN))
     except KeyboardInterrupt:
-        loop.run_until_complte(bot.logout())
+        loop.run_until_complte(bot.close())
     finally:
         loop.close()
