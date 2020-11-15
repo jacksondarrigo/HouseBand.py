@@ -43,9 +43,7 @@ if __name__ == '__main__':
             print('{} cannot be loaded. ({})'.format(cog, error))
 
     async def sigterm_handler():
-        print('SIGTERM received by bot')
         await bot.close()
-        sys.exit(0)
 
     loop = asyncio.get_event_loop()
     loop.add_signal_handler(signal.SIGTERM, lambda: asyncio.create_task(sigterm_handler()))
