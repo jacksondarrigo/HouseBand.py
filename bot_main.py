@@ -47,7 +47,7 @@ if __name__ == '__main__':
         sys.exit(0)
 
     loop = asyncio.get_event_loop()
-    loop.add_signal_handler(signal.SIGTERM, sigterm_handler)
+    loop.add_signal_handler(signal.SIGTERM, lambda: asyncio.async(sigterm_handler))
 
     try:
         loop.run_until_complete(bot.start(TOKEN))
