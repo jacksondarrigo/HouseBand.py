@@ -42,9 +42,6 @@ if __name__ == '__main__':
         except Exception as error:
             print('{} cannot be loaded. ({})'.format(cog, error))
 
-    async def sigterm_handler():
-        await bot.close()
-
     loop = asyncio.get_event_loop()
-    loop.add_signal_handler(signal.SIGTERM, lambda: asyncio.create_task(sigterm_handler()))
+    loop.add_signal_handler(signal.SIGTERM, lambda: asyncio.create_task(bot.close(code=1000)))
     loop.run_until_complete(bot.start(TOKEN))
