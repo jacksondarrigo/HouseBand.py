@@ -4,12 +4,6 @@ import time
 import sys
 import os
 
-async def sigterm_handler(signal, frame):
-    await bot.close()
-    sys.exit(0)
-
-signal.signal(signal.SIGTERM, sigterm_handler)
-
 TOKEN = os.environ.get('DISCORD_TOKEN')
 
 bot = commands.Bot(command_prefix='!!!', case_insensitive=True, description="HouseBand Music Bot")
@@ -47,4 +41,6 @@ if __name__ == '__main__':
         except Exception as error:
             print('{} cannot be loaded. ({})'.format(cog, error))
 
-    bot.start(TOKEN)
+    bot.run(TOKEN)
+    bot.close()
+    sys.exit(0)
