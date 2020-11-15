@@ -44,7 +44,7 @@ if __name__ == '__main__':
 
     def sigterm_handler():
         print('SIGTERM received by bot')
-        loop.close()
+        bot.ws.close()
         loop.run_until_complete(bot.close())
         sys.exit(0)
 
