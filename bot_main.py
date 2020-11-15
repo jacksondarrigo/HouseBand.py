@@ -1,5 +1,6 @@
 from discord.ext import commands
 import signal
+import asyncio
 import time
 import sys
 import os
@@ -41,6 +42,16 @@ if __name__ == '__main__':
         except Exception as error:
             print('{} cannot be loaded. ({})'.format(cog, error))
 
-    bot.run(TOKEN)
-    bot.close()
-    sys.exit(0)
+    async def sigterm_handler(signal, frame):
+        await bot.logout()
+        sys.exit(0)
+
+    loop = asyncio.get_event_loop()
+    loop.add_signal_handler(signal.SIGTERM, sigterm_handler)
+
+    try:
+        loop.run_until_complete(bot.start(TOKEN))
+    except KeyboardInterrupt:
+        loop.run_until_complte(bot.logout())
+    finally:
+        loop.close()
