@@ -50,10 +50,11 @@ if __name__ == '__main__':
         if bot._closed:
             return
         
+        await bot.http.close()
+
         if bot.ws is not None and bot.ws.open:
             await bot.ws.close(code=1000)
 
-        await bot.http.close()
         bot._closed = True
     
         for voice in bot.voice_clients:
