@@ -42,7 +42,7 @@ if __name__ == '__main__':
         except Exception as error:
             print('{} cannot be loaded. ({})'.format(cog, error))
 
-    async def close(self, bot):
+    async def close(bot):
         """|coro|
         Closes the connection to Discord.
         """
