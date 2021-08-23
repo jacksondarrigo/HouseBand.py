@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
 Please understand Music bots are complex, and that even this basic example can be daunting to a beginner.
 For this reason it's highly advised you familiarize yourself with discord.py, python and asyncio, BEFORE
