@@ -46,8 +46,8 @@ if __name__ == '__main__':
             print('{} cannot be loaded. ({})'.format(cog, error))
 
     async def sigterm_handler():
-        for guild in bot.guilds:
-            await guild.system_channel.send("Call Fonzy, we're on a smoke break!")
+        #for guild in bot.guilds:
+        #    await guild.system_channel.send("Call Fonzy, we're on a smoke break!")
         await bot.change_presence(status=discord.Status.offline)
         await bot.close()
 
