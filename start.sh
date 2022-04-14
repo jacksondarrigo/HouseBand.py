@@ -8,6 +8,6 @@ apt-get update && apt-get install -y ffmpeg
 
 trap 'trap " " SIGTERM; kill 0; wait' SIGTERM
 
-python /houseband/bot_main.py &
+python -u /houseband/bot_main.py &
 
 wait
