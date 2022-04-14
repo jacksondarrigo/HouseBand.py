@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+# Below forked and edited from https://gist.github.com/EvieePy/ab667b74e9758433b3eb806c53a19f34
 """
 Please understand Music bots are complex, and that even this basic example can be daunting to a beginner.
 For this reason it's highly advised you familiarize yourself with discord.py, python and asyncio, BEFORE
